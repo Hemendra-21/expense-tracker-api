@@ -9,13 +9,13 @@ const app = express();
 app.use(express.json());
 
 const PORT = 3000;
-const SECRET_KEY = 'your_secret_key';  // Replace with a strong secret key
+const SECRET_KEY = 'Hemendra721';  
 
 // User Registration
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
-  // Hash the password
+  
   const hashedPassword = await bcrypt.hash(password, 10);
 
   db.run(`INSERT INTO users (username, password) VALUES (?, ?)`, 
@@ -33,11 +33,11 @@ app.post('/login', (req, res) => {
   db.get('SELECT * FROM users WHERE username = ?', [username], async (err, user) => {
     if (err || !user) return res.status(400).json({ error: 'Invalid username or password' });
 
-    // Compare password
+    
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
 
-    // Generate JWT token
+    
     const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token });
   });
@@ -87,7 +87,6 @@ app.get('/transactions/:id', authenticateToken, async (req, res) => {
     const transactionId = req.params.id;
 
     try {
-        // Query the database for the transaction by ID
         db.get('SELECT * FROM transactions WHERE id = ?', [transactionId], (err, row) => {
             if (err) {
                 throw new Error('Database error');
@@ -97,11 +96,9 @@ app.get('/transactions/:id', authenticateToken, async (req, res) => {
                 return res.status(404).json({ error: "Transaction not found!" });
             }
 
-            // Return the transaction if found
             res.json(row);
         });
     } catch (error) {
-        // Handle any errors and return a 500 status code for unexpected server issues
         res.status(500).json({ error: error.message || "An unexpected error occurred" });
     }
 });

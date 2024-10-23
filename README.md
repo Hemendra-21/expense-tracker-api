@@ -23,5 +23,5 @@ This is a RESTful API built with **Node.js** and **Express.js** that allows user
 ### 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/expense-tracker-api.git
+git clone https://github.com/Hemendra-21/expense-tracker-api.git
 cd expense-tracker-api
