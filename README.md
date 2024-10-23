@@ -18,7 +18,34 @@ This is a RESTful API built with **Node.js** and **Express.js** that allows user
 - **SQLite** for the database
 - **JWT** (JSON Web Tokens) for authentication
 
-## Setup Instructions
+### Setup Instructions
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Hemendra-21/expense-tracker-api.git
+    cd expense-tracker-api
+    ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Create a `.env` file with the following variables:
+    ```bash
+    JWT_SECRET='Hemendra721'
+    ```
+
+4. Initialize the database (for SQLite):
+    ```bash
+    node setupDatabase.js
+    ```
+
+5. Start the server:
+    ```bash
+    npm start
+    ```
+
 
 ### 1. Clone the repository:
 
